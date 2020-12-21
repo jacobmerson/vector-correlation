@@ -1,0 +1,61 @@
+error: too many errors emitted, stopping now [clang-diagnostic-error]
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:696:27: error: expected ')' [clang-diagnostic-error]
+    _GLIBCXX20_DEPRECATED("use is_standard_layout && is_trivial instead")
+                          ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:696:26: note: to match this '('
+    _GLIBCXX20_DEPRECATED("use is_standard_layout && is_trivial instead")
+                         ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:696:27: error: expected unqualified-id [clang-diagnostic-error]
+    _GLIBCXX20_DEPRECATED("use is_standard_layout && is_trivial instead")
+                          ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2648:5: error: unknown type name '_GLIBCXX20_CONSTEXPR' [clang-diagnostic-error]
+    _GLIBCXX20_CONSTEXPR
+    ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2650:5: error: no variable template matches partial specialization [clang-diagnostic-error]
+    _Require<__not_<__is_tuple_like<_Tp>>,
+    ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2652:31: error: expected ';' at end of declaration [clang-diagnostic-error]
+             is_move_assignable<_Tp>>
+                                     ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2653:5: error: C++ requires a type specifier for all declarations [clang-diagnostic-error]
+    swap(_Tp&, _Tp&)
+    ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2653:10: error: unknown type name '_Tp' [clang-diagnostic-error]
+    swap(_Tp&, _Tp&)
+         ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2653:16: error: unknown type name '_Tp' [clang-diagnostic-error]
+    swap(_Tp&, _Tp&)
+               ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2654:51: error: use of undeclared identifier '_Tp' [clang-diagnostic-error]
+    noexcept(__and_<is_nothrow_move_constructible<_Tp>,
+                                                  ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2654:55: error: expected a type [clang-diagnostic-error]
+    noexcept(__and_<is_nothrow_move_constructible<_Tp>,
+                                                      ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2658:5: error: unknown type name '_GLIBCXX20_CONSTEXPR' [clang-diagnostic-error]
+    _GLIBCXX20_CONSTEXPR
+    ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2660:5: error: no variable template matches partial specialization [clang-diagnostic-error]
+    __enable_if_t<__is_swappable<_Tp>::value>
+    ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2660:46: error: expected ';' at end of declaration [clang-diagnostic-error]
+    __enable_if_t<__is_swappable<_Tp>::value>
+                                             ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2661:5: error: C++ requires a type specifier for all declarations [clang-diagnostic-error]
+    swap(_Tp (&__a)[_Nm], _Tp (&__b)[_Nm])
+    ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2661:16: error: use of undeclared identifier '__a' [clang-diagnostic-error]
+    swap(_Tp (&__a)[_Nm], _Tp (&__b)[_Nm])
+               ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2661:21: error: use of undeclared identifier '_Nm' [clang-diagnostic-error]
+    swap(_Tp (&__a)[_Nm], _Tp (&__b)[_Nm])
+                    ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2661:33: error: use of undeclared identifier '__b' [clang-diagnostic-error]
+    swap(_Tp (&__a)[_Nm], _Tp (&__b)[_Nm])
+                                ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2661:38: error: use of undeclared identifier '_Nm' [clang-diagnostic-error]
+    swap(_Tp (&__a)[_Nm], _Tp (&__b)[_Nm])
+                                     ^
+/opt/scorec/spack/v0154/install2/linux-rhel7-x86_64/gcc-6.5.0/gcc-10.1.0-6aux4ghzryg2mkoaacx7lzj7yye65sux/include/c++/10.1.0/type_traits:2661:43: error: expected ';' after top level declarator [clang-diagnostic-error]
+    swap(_Tp (&__a)[_Nm], _Tp (&__b)[_Nm])
+                                          ^
