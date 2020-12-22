@@ -7,15 +7,6 @@
 #include "spdlog/spdlog.h"
 namespace VectorCorrelation
 {
-  // images are 2d views of data
-  using ComplexImageType = Kokkos::View<CST **>;
-  using ScalarImageType = Kokkos::View<ScalarType **>;
-  using OrdinalImageType = Kokkos::View<OrdinalType **>;
-  using ConstComplexImageType = typename ComplexImageType::const_type;
-  using ConstScalarImageType = typename ScalarImageType::const_type;
-  using ConstOrdinalImageType = typename OrdinalImageType::const_type;
-  using Serial = Kokkos::Serial;
-  using OpenMP = Kokkos::OpenMP;
   class ScopeGuard
   {
     public:
@@ -56,7 +47,7 @@ namespace VectorCorrelation
      * add frame directly from orientation vector and mask
      */
     void AddFrame(ComplexImageType orientation_vector, OrdinalImageType mask);
-
+    const auto& GetOutput() const {return vector_correlation_frames_;}
     private:
     /**
      * vector frames over which the vector correlation will be computed
@@ -71,7 +62,12 @@ namespace VectorCorrelation
      * in the vector correlation.
      */
     std::vector<OrdinalImageType> mask_frames_;
-    std::vector<ComplexImageType> vector_correlation_frames_;
+    /**
+     * The output vector correlatio magnitude image
+     * This image will have a halo of number_correlation_pixels_/2
+     * rows and columns with a zero value.
+     */
+    std::vector<ScalarImageType> vector_correlation_frames_;
     OrdinalType NX_;
     OrdinalType NY_;
     OrdinalType number_correlation_pixels_;
