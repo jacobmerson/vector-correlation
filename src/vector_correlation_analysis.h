@@ -32,14 +32,14 @@ namespace VectorCorrelation
   };
   // main class that holds vector correlation data
   template <typename Backend>
-  class VectorCorrelation
+  class VectorCorrelationAnalysis
   {
     public:
     using BackendType = Backend;
     /*
      *
      */
-    VectorCorrelation(OrdinalType NX, OrdinalType NY)
+    VectorCorrelationAnalysis(OrdinalType NX, OrdinalType NY)
         : NX_(NX), NY_(NY), number_correlation_pixels_(5){};
     void Run();
     /**

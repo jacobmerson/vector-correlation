@@ -1,4 +1,4 @@
-#include "vector_correlation.h"
+#include "vector_correlation_analysis.h"
 #include "complex_math.h"
 #include <exception>
 namespace VectorCorrelation
@@ -103,7 +103,7 @@ namespace VectorCorrelation
     return correlation;
   }
   template <typename Backend>
-  void VectorCorrelation<Backend>::AddFrame(ComplexImageType orientation_vector,
+  void VectorCorrelationAnalysis<Backend>::AddFrame(ComplexImageType orientation_vector,
                                             OrdinalImageType mask)
   {
     spdlog::debug("Adding frame by orienation vector and mask");
@@ -122,7 +122,7 @@ namespace VectorCorrelation
     mask_frames_.push_back(mask);
   }
   template <typename Backend>
-  void VectorCorrelation<Backend>::Run()
+  void VectorCorrelationAnalysis<Backend>::Run()
   {
     spdlog::debug("Run Correlation Analysis");
     vector_correlation_frames_.resize(orientation_vector_frames_.size() - 1);
@@ -140,6 +140,14 @@ namespace VectorCorrelation
           image1, mask1, mean1, sigma1,
           image2, mask1, mean2, sigma2,
           number_correlation_pixels_);
+        for(int i=0; i<correlated.extent(0); ++i)
+        {
+          for(int j=0; j<correlated.extent(1); ++j)
+          {
+            fmt::print("{} ",correlated(i,j));
+          }
+          fmt::print("\n");
+        }
       // swap image 2 to image 1 so we don't need to recompute the values
       image1 = image2;
       mask1 = mask2;
@@ -148,5 +156,5 @@ namespace VectorCorrelation
     }
   }
   // explicitly instantiate backend types
-  template class VectorCorrelation<Serial>;
+  template class VectorCorrelationAnalysis<Serial>;
 }  // namespace VectorCorrelation

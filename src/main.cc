@@ -2,7 +2,7 @@
 #include <filesystem>
 #include "common_types.h"
 #include "spdlog/spdlog.h"
-#include "vector_correlation.h"
+#include "vector_correlation_analysis.h"
 int main(int argc, char ** argv)
 {
   spdlog::set_level(spdlog::level::debug);
@@ -22,7 +22,7 @@ int main(int argc, char ** argv)
       mask(i, j) = 1;
     }
   }
-  VectorCorrelation::VectorCorrelation<VectorCorrelation::Serial>
+  VectorCorrelation::VectorCorrelationAnalysis<VectorCorrelation::Serial>
       vector_correlation{NX, NY};
   vector_correlation.AddFrame(image1, mask);
   vector_correlation.AddFrame(image2, mask);

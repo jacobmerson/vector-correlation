@@ -1,5 +1,5 @@
 #include "catch2/catch_session.hpp"
-#include "vector_correlation.h"
+#include "vector_correlation_analysis.h"
 
 int main(int argc, char*argv[]) 
 {
