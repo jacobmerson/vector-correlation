@@ -1,14 +1,8 @@
 #include "vector_correlation.h"
+#include "complex_math.h"
 #include <exception>
 namespace VectorCorrelation
 {
-  KOKKOS_INLINE_FUNCTION
-  auto conjugate_times(CST a, CST b) -> CST
-  {
-    return CST{a.real() * b.real() + a.imag() * b.imag(),
-               a.real() * b.imag() - b.real() * a.imag()};
-  }
-
   template <typename Backend>
   auto compute_mean_image(ComplexImageType image,
                         OrdinalImageType mask,
@@ -21,8 +15,8 @@ namespace VectorCorrelation
     OrdinalType buffer = ncorrpx / 2;
     OrdinalType ncorrpxsq = ncorrpx*ncorrpx;
     Kokkos::MDRangePolicy<Kokkos::Rank<4>> policy(
-        {buffer, buffer, 0, 0}, {image.extent(0) - buffer,
-                                 image.extent(1) - buffer, ncorrpx, ncorrpx});
+        {buffer, buffer, 0, 0}, {static_cast<long>(image.extent(0) - buffer),
+                                 static_cast<long>(image.extent(1) - buffer), ncorrpx, ncorrpx});
     Kokkos::parallel_for("compute mean", policy, KOKKOS_LAMBDA(const int i, const int j, const int l, const int m)
         {
         // FIXME: replace with a scatter view
@@ -66,8 +60,8 @@ namespace VectorCorrelation
     OrdinalType buffer = ncorrpx / 2;
     OrdinalType ncorrpxsq = ncorrpx*ncorrpx;
     Kokkos::MDRangePolicy<Kokkos::Rank<4>> policy(
-        {buffer, buffer, 0, 0}, {image1.extent(0) - buffer,
-                                 image1.extent(1) - buffer, ncorrpx, ncorrpx});
+        {buffer, buffer, 0, 0}, {static_cast<long>(image1.extent(0) - buffer),
+                                 static_cast<long>(image1.extent(1) - buffer), ncorrpx, ncorrpx});
     Kokkos::parallel_for("compute correlation", policy, KOKKOS_LAMBDA(const int i, const int j, const int l, const int m)
     {
         int subimage_i = i-buffer+l;
@@ -96,8 +90,8 @@ namespace VectorCorrelation
     OrdinalType buffer = ncorrpx / 2;
     OrdinalType ncorrpxsq = ncorrpx*ncorrpx;
     Kokkos::MDRangePolicy<Kokkos::Rank<4>> policy(
-        {buffer, buffer, 0, 0}, {image.extent(0) - buffer,
-                                 image.extent(1) - buffer, ncorrpx, ncorrpx});
+        {buffer, buffer, 0, 0}, {static_cast<long>(image.extent(0) - buffer),
+                                 static_cast<long>(image.extent(1) - buffer), ncorrpx, ncorrpx});
     Kokkos::parallel_for("compute autocorrelation", policy, KOKKOS_LAMBDA(const int i, const int j, const int l, const int m)
     {
         int subimage_i = i-buffer+l;
@@ -153,4 +147,6 @@ namespace VectorCorrelation
       sigma1 = sigma2;
     }
   }
+  // explicitly instantiate backend types
+  template class VectorCorrelation<Serial>;
 }  // namespace VectorCorrelation

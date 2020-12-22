@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.19.1)
 project(VectorCorrelation CXX)
+
+include(CTest)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -19,3 +22,7 @@ find_package(spdlog REQUIRED)
 find_package(Kokkos REQUIRED)
 
 add_subdirectory(src)
+
+if(BUILD_TESTING)
+  add_subdirectory(test)
+endif()

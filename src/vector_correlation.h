@@ -7,8 +7,6 @@
 #include "spdlog/spdlog.h"
 namespace VectorCorrelation
 {
-  // KOKKOS_INLINE_FUNCTION
-  // auto conjugate_times(CST a, CST b) -> CST;
   // images are 2d views of data
   using ComplexImageType = Kokkos::View<CST **>;
   using ScalarImageType = Kokkos::View<ScalarType **>;
@@ -80,9 +78,5 @@ namespace VectorCorrelation
     // bool ignore_max_vector
     // bool ignore_vector_magnitude
   };
-  // explicitly instantiate backend types
-  template class VectorCorrelation<Serial>;
-  // FIXME save compile times for now...
-  // template class VectorCorrelation<OpenMP>;
 }  // namespace VectorCorrelation
 #endif
