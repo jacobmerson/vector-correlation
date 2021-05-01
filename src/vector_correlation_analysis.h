@@ -46,6 +46,7 @@ namespace VectorCorrelation
     /*
      * add frame directly from orientation vector and mask
      */
+    void AddFrame(ComplexImageType orientation_vector);
     void AddFrame(ComplexImageType orientation_vector, OrdinalImageType mask);
     const auto& GetOutput() const {return vector_correlation_frames_;}
     private:

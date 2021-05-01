@@ -26,6 +26,13 @@ namespace VectorCorrelation
     mask_frames_.push_back(mask);
   }
   template <typename Backend>
+  void VectorCorrelationAnalysis<Backend>::AddFrame(ComplexImageType orientation_vector)
+  {
+    OrdinalImageType mask("mask", orientation_vector.extent(0), orientation_vector.extent(1));
+    Kokkos::deep_copy(mask,1);
+    AddFrame(orientation_vector,mask);
+  }
+  template <typename Backend>
   void VectorCorrelationAnalysis<Backend>::Run()
   {
     spdlog::debug("Run Correlation Analysis");
@@ -64,7 +71,6 @@ namespace VectorCorrelation
       image_magnitude.SetInput(vector_correlation);
       image_magnitude.Run();
       vector_correlation_frames_.push_back(image_magnitude.GetOutput());
-      auto correlated = image_magnitude.GetOutput();
       // swap image 2 to image 1 so we don't need to recompute the values
       image1 = image2;
       //mask1 = mask2;

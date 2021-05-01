@@ -42,4 +42,5 @@ namespace VectorCorrelation
     block_size_ = bs;
   }
   template class BlockedImageMean<Serial, ComplexImageType>;
+  template class BlockedImageMean<Serial, ScalarImageType>;
 }
