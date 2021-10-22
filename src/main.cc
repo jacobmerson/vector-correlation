@@ -40,6 +40,16 @@ int main(int argc, char ** argv)
   spdlog::set_level(spdlog::level::warn);
   spdlog::info("Vector Correlation Code");
   VectorCorrelation::ScopeGuard scope_guard(argc, argv);
+  fs::path base_path{"/lore/mersoj/vector-correlation/AR_alignments"};
+  auto frame1 = read_complex_image(ImageFrame{base_path / "align9_0_angle.dat",base_path / "align9_0_alignment.dat"});
+  VectorCorrelationAnalysis<Serial> vector_correlation(frame1.extent(0), frame1.extent(1));
+  vector_correlation.AddFrame(frame1);
+  //vector_correlation.AddFrame(read_complex_image(ImageFrame{base_path / fmt::format("align9_{}_angle.dat",1),base_path / fmt::format("align9_{}_alignment.dat",1)}));
+  for(int i=10;i<50; i+=10)
+  {
+    vector_correlation.AddFrame(read_complex_image(ImageFrame{base_path / fmt::format("align9_{}_angle.dat",i),base_path / fmt::format("align9_{}_alignment.dat",i)}));
+  }
+  /*
   //fs::path base_path{"/lore/mersoj/vector-correlation/R54-csv"};
   fs::path base_path{"/lore/mersoj/vector-correlation/R55"};
 
@@ -51,6 +61,7 @@ int main(int argc, char ** argv)
   vector_correlation.AddFrame(read_complex_image(ImageFrame{base_path / "min40_Ang.csv",base_path / "min40_Ret.csv"}));
   vector_correlation.AddFrame(read_complex_image(ImageFrame{base_path / "min20_Ang.csv",base_path / "min20_Ret.csv"}));
   vector_correlation.AddFrame(read_complex_image(ImageFrame{base_path / "AR_Ang.csv",base_path / "AR_Ret.csv"}));
+  */
 
   vector_correlation.Run();
   auto correlations = vector_correlation.GetOutput();
@@ -83,6 +94,7 @@ std::vector<std::vector<double>> read_data(std::ifstream& ifile)
       size_t end=0;
       size_t start = 0;
       do {
+        //end = line.find(',',start);
         end = line.find(',',start);
         double val = std::stod(line.substr(start,end));
         data.back().push_back(val);
@@ -119,7 +131,8 @@ ComplexImageType read_complex_image(ImageFrame frame) {
   for(size_t r=0; r<nrows; ++r) {
     for(size_t c=0; c<ncols; ++c) {
       //image(r,c) = CST{std::cos(angle[r][c])*retardance[r][c], std::sin(angle[r][c])*retardance[r][c]};
-      image(r,c) = CST{std::cos(2*angle[r][c])*std::pow(std::sin(retardance[r][c]),2), std::sin(2*angle[r][c])*std::pow(std::sin(retardance[r][c]),2)};
+      image(r,c) = CST{std::cos(angle[r][c]), std::sin(angle[r][c])};
+      //image(r,c) = CST{std::cos(2*angle[r][c])*std::pow(std::sin(retardance[r][c]),2), std::sin(2*angle[r][c])*std::pow(std::sin(retardance[r][c]),2)};
     }
   }
   return image;
